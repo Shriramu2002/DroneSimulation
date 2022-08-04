@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>envision.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="mentors">Mentors</h3>
+<ul>
+<li>Vasanth M</li>
+<li>Shannon Britney Carlo</li>
+<li>Shriramu A R</li>
+</ul>
+<h3 id="members">Members</h3>
+<ul>
+<li>Anani Mani Tripathi</li>
+<li>Goti Dev Pankajbhai</li>
+<li>B Manasa Priya Chandana</li>
+<li>Srinath Seshadri</li>
+<li>Krisha Shah</li>
+<li>Nischith Gowd Hanchanahal</li>
+</ul>
+<h2 id="aim">Aim</h2>
+<p>To get a clear understanding and to visualize the dynamics and control implementation of various systems starting from basics and extending it to drone, a simulink model will be built after thoroughly understanding the drone dynamics.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Today, drones are everywhere, from ultra high tech military devices to toys for kids going through advanced flying cameras and
+much more. How do such ”apparently” simple machines achieve such precise and impressive flights in varying unstable and
+unpredictable environmental conditions.</p>
+<h2 id="mechanical-design">Mechanical design</h2>
+<p>In this project the drone is assumed to be made of two beams placed perpendicular to each other as shown in the images.</p>
+<h3 id="x-y-plane-view">x-y plane view</h3>
+<p><img src="topView.png" alt="image 1"></p>
+<h3 id="z-y-or-z-x-plane-view">z-y or z-x plane view</h3>
+<p><img src="sideView.png" alt="image 2"></p>
+<ul>
+<li>Length of bar: 335 mm</li>
+<li>Depth of bar: 60 mm</li>
+<li>Width of bar: 237 mm</li>
+</ul>
+<h3 id="moment-of-inertia">Moment of inertia</h3>
+<ul>
+<li>About x axis (pitch axis), Ixx = 0.003 kg/m^2</li>
+<li>About y axis (roll axis), Iyy = 0.003 kg/m^2</li>
+<li>About z axis (yaw axis), Izz = 0.007 kg/m^2</li>
+</ul>
+<h2 id="battery-motor-and-propeller-specifications">Battery motor and propeller specifications</h2>
+<h3 id="battery">Battery</h3>
+<p>A lithium battery of nominal voltage 11.4 V is used.</p>
+<ul>
+<li>Power capacity: 43.6Wh</li>
+<li>Maximum allowed current: 77A</li>
+</ul>
+<h3 id="motor">Motor</h3>
+<p>Voltage vs Rpm values for a standard brushless dc motor is taken and used as  a reference. And based on this data an approximate equation directly relating voltage and Rpm is obtained and used in the simulation model.</p>
+<p><img src="Xcel.png" alt="image_3"></p>
+<h3 id="propeller">Propeller</h3>
+<p>The section of the propeller blades are similar to the airfoil section, so when accelerated rotationally will produce a thrust force upwards, and a torque due to the drag forces which opposes the motion of the propeller. So the propeller also should produce a equivalent torque to overcome the drag and load, and to keep the propeller in motion.</p>
+<p><img src="Xpropeller.png" alt="image_4"></p>
+<h4 id="thrust">Thrust</h4>
+<p>thrust = ct ∗ 𝜌 ∗ 𝑛² ∗𝐷^4<br>
+ct -&gt;coefficient of thrust<br>
+𝜌-&gt; density of air<br>
+n-&gt; number of revolutions per second<br>
+D-&gt; diameter of propellers<br>
+The value of ct is found to be related to the rpm by this equation<br>
+ct = (2x10^-15)*Rpm^3 - (4x10^-11)*Rpm^2 + (3x10^-7)*Rpm</p>
+<h4 id="torque">Torque</h4>
+<p>Torque is related to Rpm using this relation<br>
+tq = (4x10^-14)*Rpm^3 + (8x10^-12)*Rmp^2+ (3x10^-6)*Rpm</p>
+<h2 id="rigid-body-dynamics-of-drone">Rigid body dynamics of drone</h2>
+<p><img src="ZfreeBodyDiagram.png" alt="image_5"></p>
+<h3 id="fundamendal-equations-of-motion">Fundamendal equations of motion</h3>
+<p>In the x direction: 𝐹𝑥 = 𝑚𝑎𝑥<br>
+In the y direction: 𝐹𝑦 = 𝑚𝑎𝑦<br>
+In the z direction: 𝐹𝑧 = 𝑚𝑎z<br>
+About the x-axis: Mx = <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi>Ixx</mi><mo> </mo><mover accent="true" accentunder="false"><mrow><mover accent="true" accentunder="false"><mrow><mi>θ</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mrow></math><br>
+About the y-axis: My = <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi>Iyy</mi><mo> </mo><mover accent="true" accentunder="false"><mrow><mover accent="true" accentunder="false"><mrow><mi>ϕ</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mrow></math><br>
+About the z-axis: Mz = <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi>Izz</mi><mo> </mo><mover accent="true" accentunder="false"><mrow><mover accent="true" accentunder="false"><mrow><mi>ψ</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mrow></math></p>
+<h3 id="final-rigid-body-equtions">Final rigid body equtions</h3>
+<p><img src="zzzTorque.png" alt="image_6"></p>
+<p>𝑀𝑧 = 𝑇4 − 𝑇1 + 𝑇2 − 𝑇3<br>
+𝑀𝑥 = (𝐹3 + 𝐹4) ∗
+0.237/
+2
+− (𝐹1 + 𝐹2) ∗
+0.237/
+2<br>
+𝑀𝑦 = (𝐹3 + 𝐹2) ∗
+0.237/
+2
+− (𝐹4 + 𝐹1) ∗
+0.237/
+2<br>
+𝐹𝑝𝑟𝑜𝑝𝑥
+= sin<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>ϕ</mi></math> ∗ cos𝜃 ∗ (𝐹1 + 𝐹2 + 𝐹3 + 𝐹4)<br>
+𝐹𝑝𝑟𝑜𝑝𝑦
+= sin𝜃 ∗ cos<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>ϕ</mi></math> ∗ (𝐹1 + 𝐹2 + 𝐹3 + 𝐹4)<br>
+𝐹𝑝𝑟𝑜𝑝𝑧
+= cos𝜃 ∗ cos<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>ϕ</mi></math> * (𝐹1 + 𝐹2 + 𝐹3 + 𝐹4)</p>
+<h2 id="implementing-the-model-in-matlab-and-simulink">Implementing the model in matlab and simulink</h2>
+<p>Normally drone control system consist of two control blocks, position control and attitude control. But this project focuses only on the attitude control block plus the throttle control.</p>
+<h3 id="control-system-representation-of-drone">Control system representation of drone</h3>
+<p><img src="zzzzControlSystem.png" alt="image_7"></p>
+<h3 id="motor-and-propeller-block">Motor and propeller block</h3>
+<p>Input : Voltage[V] (4x1 - vector)<br>
+Output : Thrust[F] torque[T]  (4x1 - vector)</p>
+<p><img src="zzzzzMotorsSlx.png" alt="image_8"></p>
+<p>In this block the voltage supplied to each motor is taken as an input and the thrust and the torque generated by each motor is given as an output.</p>
+<h3 id="linear-dynamics-block">Linear dynamics block</h3>
+<p>Input : Thrust[F] Attitude[theta] Vecocity[v]<br>
+Output: Acceleration[a]</p>
+<p><img src="zzzzzzLinearDynamics.png" alt="image_9"></p>
+<p>Here theta denotes the roll, pitch and yaw angles. Velcoity is taken as an input to calculate the drag forces.</p>
+<h3 id="rotational-dynamics-block">Rotational dynamics block</h3>
+<p>Input: Thrust[F] Torque[T]<br>
+Output: Angular acceleration[alpha]</p>
+<p><img src="zzzzzzzRotationalDynamics.png" alt="image_10"></p>
+<p>With the help of rigid body equations and calculated values of moment of inertia, the angular acceleration vector is calculated using the thrust and torque values.</p>
+<h3 id="pid-controllers">PID controllers</h3>
+<p><img src="zzzzzzzzFullSimulink.png" alt="image_11"></p>
+<p>The simulink model consist of four PID controllers<br>
+1-&gt; For attaining the desired altitude.<br>
+2-&gt; For attainging the desired pitch rate.<br>
+3-&gt; For attaining the desired roll rate.
+4-&gt; For attaining the desired yaw rate.</p>
+<h2 id="simulation-results">Simulation results</h2>
+<p><img src="zzzzzzzzzAltitude.png" alt="image_12"></p>
+<p><img src="zzzzzzzzzzAngularVelcoities.png" alt="image_13"></p>
+<ul>
+<li>
+<p>First plot shows the altitude as a function of time. In this simulation the attitudes are assumed to be constants.</p>
+</li>
+<li>
+<p>Second plot shows the angulare velocities as a function of time, here throttle input is assumed to be constant.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>We simulated a mavic pro drone in matlab and simulink and used PID controllers for altitude control. We used mathematical equations behind the rotational and linear dynamics of the drone to implement a mathematical model in matlab and simulink using blocks. Later PID controllers were used to control the position and altitude of the drone.</li>
+<li>Further plans to add position controller and trajectory planner to this model and to simulate a drone following a pariticular trajectory in 3-d space.</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li>Modeling, Simulation and Control of Quadcopter using PID Controller, <a href="https://www.researchgate.net/publication/334965830_Modeling_Simulation_and_Control_of_Quadcopter_using_PID_Controller">Link</a></li>
+<li>MODELING, SIMULATION AND COMPLETE
+CONTROL OF A QUADCOPTER, <a href="https://harikrishnansuresh.github.io/assets/quadcopter_control_project_report.pdf">Link</a></li>
+<li>Simulink-based Quadcopter Control System Model, <a href="https://ieeexplore.ieee.org/document/9314676">Link</a></li>
+<li>Matlab tech talks, <a href="https://in.mathworks.com/videos/drone-simulation-and-control-part-1-setting-up-the-control-problem-1539323440930.html">Link</a></li>
+</ol>
+
+</body>
+</html>
